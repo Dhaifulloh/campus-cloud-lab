@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: campus-cloud-reference:local
+          image: campus-cloud-reference:v2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
