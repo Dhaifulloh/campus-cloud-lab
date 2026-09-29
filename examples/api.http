@@ -1,0 +1,22 @@
+### Direct reference app - list SI laboratories
+GET http://localhost:8080/api/laboratories
+X-Tenant-ID: SI
+
+### Direct reference app - list IF laboratories
+GET http://localhost:8080/api/laboratories
+X-Tenant-ID: IF
+
+### Create SI reservation
+POST http://localhost:8080/api/reservations
+Content-Type: application/json
+X-Tenant-ID: SI
+
+{
+  "laboratoryId": 1,
+  "startTime": "2026-09-20T01:00:00Z",
+  "endTime": "2026-09-20T03:00:00Z",
+  "purpose": "Cloud Computing Practical"
+}
+
+### Negative tenant-isolation test: ask SI tenant for an IF laboratory id
+# Change the laboratoryId to an ID that belongs to another tenant and verify it is rejected.

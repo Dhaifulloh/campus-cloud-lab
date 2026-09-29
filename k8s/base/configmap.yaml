@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: campus-cloud-config
+  namespace: campus-cloud
+data:
+  DB_URL: jdbc:postgresql://host.k3d.internal:5432/campus_cloud
+  DB_USER: campus
+  # RABBITMQ_HOST: campus-rabbitmq
+  RABBITMQ_HOST: host.k3d.internal
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: campus
+  # OTEL_ENDPOINT: http://host.k3d.internal:4317
+  OTEL_ENDPOINT: http://host.k3d.internal:4317
+  OIDC_ENABLED: "false"
+  # OIDC_AUTH_SERVER_URL: http://host.k3d.internal:8081/realms/campus-cloud
+  OIDC_AUTH_SERVER_URL: http://host.k3d.internal:8081/realms/campus-cloud
+  OIDC_CLIENT_ID: campus-cloud-app

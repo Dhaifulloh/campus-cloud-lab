@@ -1,0 +1,44 @@
+enum ReservationStatus {
+  REQUESTED,
+  APPROVED,
+  REJECTED,
+  CANCELLED,
+  COMPLETED
+}
+
+entity Tenant {
+  code String required unique maxlength(32),
+  name String required maxlength(120),
+  active Boolean required
+}
+
+entity Laboratory {
+  code String required maxlength(32),
+  name String required maxlength(120),
+  capacity Integer required min(1),
+  location String maxlength(120),
+  active Boolean required
+}
+
+entity Reservation {
+  startTime Instant required,
+  endTime Instant required,
+  status ReservationStatus required,
+  purpose String maxlength(255)
+}
+
+entity UsageRecord {
+  startedAt Instant required,
+  endedAt Instant,
+  attendees Integer min(0),
+  note String maxlength(255)
+}
+
+relationship ManyToOne {
+  Laboratory{tenant(code) required} to Tenant,
+  Reservation{tenant(code) required} to Tenant,
+  Reservation{laboratory(code) required} to Laboratory,
+  UsageRecord{tenant(code) required} to Tenant,
+  UsageRecord{laboratory(code) required} to Laboratory,
+  UsageRecord{reservation required} to Reservation
+}
